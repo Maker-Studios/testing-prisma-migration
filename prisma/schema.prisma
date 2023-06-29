@@ -17,4 +17,15 @@ model Todo {
   completed Boolean  @default(false)
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now())
+  socials   Social[]
+}
+
+model Social {
+  id        String   @id @default(uuid())
+  title     String
+  todoId    String
+  isTesting Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+  owner     Todo     @relation(fields: [todoId], references: [id])
 }
